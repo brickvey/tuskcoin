@@ -1,0 +1,50 @@
+# exclude SafeMath when calculating test coverage
+# https://eth-brownie.readthedocs.io/en/v1.10.3/config.html#exclude_paths
+reports:
+    exclude_contracts:
+        - SafeMath
+        - MockV3Aggregator
+        - BivenToken
+        - MockERC20
+dependencies: 
+ - OpenZeppelin/openzeppelin-contracts@4.4.2
+ - smartcontractkit/chainlink-brownie-contracts@0.3.1
+compiler: 
+ solc:
+  remappings:
+   - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.4.2'
+   - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.3.1'
+autofetch_sources: True
+dotenv: .env
+networks:
+ development:
+        verify: False
+ ganache: 
+        verify: False
+ binance-fork:
+        verify: False
+ kovan:
+        verify: True
+        weth_token: '0xd0a1e359811322d97991e03f863a0c30c2cf029c'
+        fau_token: '0xFab46E002BbF0b4509813474841E0716E6730136'
+        dai_usd_price_feed: '0x777A68032a88E5A84678A77Af2CD65A7b3c0775a'
+        eth_usd_price_feed: '0x9326BFA02ADD2366b30bacB125260Af641031331'
+ bsc-test:
+        verify: True
+        wbnb_token: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+        doge_token: '0x5c33ae491a5117a06cbf9cdb7574e76e8748c4fa'
+        BivenFarm: '0xD04c1884c0d3027b5E7f52e2d234Beb4bE634F20'
+        bnb_usd_price_feed: '0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526'
+        doge_usd_price_feed: '0x963D5e7f285Cc84ed566C486c3c1bC911291be38'
+ bsc-main:
+        verify: True
+        wbnb_token: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+        doge_token: '0xba2ae424d960c26247dd6c32edc70b295c744c43'
+        bnb_usd_price_feed: '0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE'
+        doge_usd_price_feed: '0x3AB0A0d137D4F946fBB19eecc6e92E64660231C8'
+ binance-fork:
+        verify: False
+wallets:
+ from_key: ${PRIVATE_KEY}
+ from_mnemonic: ${MNEMONIC}
+ 
